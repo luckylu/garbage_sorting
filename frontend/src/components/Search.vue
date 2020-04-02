@@ -25,7 +25,7 @@
     <Col :xs="16" :md="6" :lg="6">
       <Card v-if="final_result !== ''">
         <p slot="title">{{final_result.category.name}}</p>
-        <p v-show="final_result.category.id === 1">是指废纸张，废塑料，废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物</p>
+        <p v-show="final_result.category.id === 1">是指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物</p>
         <p v-show="final_result.category.id === 2">是指废电池、废灯管、废药品、废油漆及其容易等对人体健康或者自然环境造成直接或者潜在危害的生活废弃物</p>
         <p v-show="final_result.category.id === 4">即易腐垃圾，是指食材废料、剩菜剩饭、过期食品、瓜皮果核、花卉绿植、中药药渣等易腐的生物质生活废弃物</p>
         <p v-show="final_result.category.id === 8">即其他垃圾，是指除可回收物、有害垃圾、湿垃圾以外的其他生活废弃物</p>
