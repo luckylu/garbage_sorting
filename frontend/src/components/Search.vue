@@ -69,7 +69,7 @@ export default {
       that.no_result = false
       that.final_result = ''
       console.log(that.garbage)
-      that.axios.get("http://localhost:8000/api/garbages/" + that.garbage + "/").then((response) => {
+      that.axios.get(process.env.VUE_APP_API_HOST+"/api/garbages/" + that.garbage + "/").then((response) => {
         if(response.data.length > 1){
           that.results = response.data
         }
@@ -84,7 +84,7 @@ export default {
       that.results = []
       that.no_result = false
       that.final_result = ''
-      that.axios.get("http://localhost:8000/api/exact_garbages/" + name + "/").then((response) => {
+      that.axios.get(process.env.VUE_APP_API_HOST+"/api/exact_garbages/" + name + "/").then((response) => {
         console.log(response.data)
         if(response.data.length === 1){
           that.final_result = response.data[0]
