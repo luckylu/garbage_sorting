@@ -1,14 +1,14 @@
 from api.models import Garbage
 from rest_framework import status
 from rest_framework.decorators import api_view
-from api.serializers import GarbageSerializer
+from api.serializers import GarbageSerializer, GarbageFuzzySearchSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 @api_view(['GET'])
 def garbages(request, garbage):
     result = Garbage.objects.filter(name__contains = garbage)
-    serializer = GarbageSerializer(result, many=True)
+    serializer = GarbageFuzzySearchSerializer(result, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])

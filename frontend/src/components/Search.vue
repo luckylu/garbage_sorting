@@ -69,6 +69,9 @@ export default {
       that.no_result = false
       that.final_result = ''
       console.log(that.garbage)
+      if(that.garbage === ''){
+        return
+      }
       that.axios.get(process.env.VUE_APP_API_HOST+"/api/garbages/" + that.garbage + "/").then((response) => {
         if(response.data.length > 1){
           that.results = response.data
