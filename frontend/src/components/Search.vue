@@ -83,6 +83,9 @@ export default {
     }),
     clickResult: function(name){
       var that = this
+      if(that.garbage === ''){
+        return
+      }
       that.garbage = name
       that.results = []
       that.no_result = false
