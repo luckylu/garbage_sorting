@@ -120,23 +120,34 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'timestamp': {
-            'format': '{asctime} {levelname} {message}',
+            'format': '{asctime} {module}.{funcName} {lineno:3} {levelname:7} => {message}',
             'style': '{',
         },
     },
     'handlers': {
         'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'level': 'INFO',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'when': 'D',
+            'interval': 1,
+            'backupCount': 10,
             'filename': os.path.join(BASE_DIR, "logs/django.log"),
             'formatter': 'timestamp'
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
     },
     'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': env.str('DJANGO_LOG_LEVEL', 'INFO'),
+        },
         'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
+            'level': env.str('DJANGO_LOG_LEVEL', 'INFO'),
+            'handlers': ['console', 'file'],
+            'propagate': False,
         }
     },
 }
